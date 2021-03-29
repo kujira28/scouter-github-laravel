@@ -25,6 +25,36 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if (Auth::user()->is_administrator == false) {
+            // 一般ユーザーの場合、ホームに遷移
+            return redirect('/');
+        }
+
+        $users = User::where('id', '>', '0');
+        if( $request->has('user_name_id') && $request->input('user_name_id') != null) {
+            $user_name_id = $request->input('user_name_id');
+            $users = $users->where('user_name_id', 'like', "%$user_name_id%");
+        }
+        if( $request->has('name') && $request->input('name') != null) {
+            $name = $request->input('name');
+            $users = $users->where('name', 'like', "%$name%");
+        }
+        //dd($users);
+        if( $request->has('phone_number') && $request->input('phone_number') != null) {
+            $phone_number = $request->input('phone_number');
+            $users = $users->where('phone_number', 'like', "%$phone_number%");
+        }
+        if($request->has('position_id') && $request->input('position_id') > 0) {
+            $position = $request->input('position_id');
+            $users = $users->where('position_id', $position);
+        }
+        $users = $users->get()->sortBy('id');
+
+        return view('user_index', [
+            'users' => $users,
+            'departments' => Department::get(),
+            'positions' => Position::get(),
+        ]);
     }
 
     /**
@@ -60,7 +90,6 @@ class UserController extends Controller
             return view('user_edit',
                 [
                     'user' => $user,
-                    'departments' => Department::get(),
                     'positions' => Position::get(),
                 ]);
         } else {
@@ -120,7 +149,6 @@ class UserController extends Controller
                     'address' =>$request->address,
                     'email' => $request->email,
                     'phone_number' => $request->phone_number,
-                    'department_id' => $request->department_id,
                     'position_id' => $request->position_id,
                 ]);
         }
