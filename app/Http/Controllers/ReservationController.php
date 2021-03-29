@@ -22,9 +22,6 @@ class ReservationController extends Controller
     {;
     }
 
-    public function create(){
-    }
-
 
     /**
      * 予約の登録
@@ -98,25 +95,8 @@ class ReservationController extends Controller
         return redirect(route('reservations.index'));
     }
 
-    public function edit(Request $request)
+    public function edit()
     {
-        $reservation = Reservation::find($request->id);
-        if (Auth::user()->is_administrator || $reservation->user->id == Auth::id()) {
-
-            // HTMLの input type="datetime-local" で表示するために 半角スペースを T に置換
-            $reservation->start_time = str_replace(' ', 'T', $reservation->start_time);
-            $reservation->end_time = str_replace( ' ', 'T', $reservation->end_time);
-
-            // ログインしているのが管理者の場合、
-            // またはログインユーザーが予約したユーザーと同一の場合に編集画面へ遷移
-            return view('reservation_edit',
-                [
-                    'reservation' => $reservation,
-                    'meetingRooms' => MeetingRoom::get(),
-                    'items' => Item::get(),
-                    'isAdmin' => Auth::user()->is_administrator,
-                ]);
-        }
     }
 
     /**
