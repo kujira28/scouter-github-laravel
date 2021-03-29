@@ -44,10 +44,6 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/rooms/index' , 'MeetingRoomController@index' )
         ->name('rooms.index');
-    Route::get('/rooms/create' , 'MeetingRoomController@create' )
-        ->name('rooms.create');
-    Route::post('/rooms/store' , 'MeetingRoomController@store' )
-        ->name('rooms.store');
     Route::get('/rooms/edit/{id}', 'MeetingRoomController@edit')
         ->name('rooms.edit');
     Route::put('/rooms/update', 'MeetingRoomController@update')
