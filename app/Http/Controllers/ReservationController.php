@@ -19,7 +19,7 @@ class ReservationController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
-    {;
+    {
     }
 
 
@@ -41,11 +41,11 @@ class ReservationController extends Controller
 
         // HTMLの input type="datetime-local" に T が含まれているので置換
         $start_time = str_replace('T', ' ', $request->start_time);
-        $end_time = str_replace( 'T', ' ', $request->end_time);
+        $end_time = str_replace('T', ' ', $request->end_time);
 
 
         $maxUseHour = $meetingRoom->max_use_hour;
-        if ($maxUseHour != null){
+        if ($maxUseHour != null) {
             // 利用時間の上限がある場合
             // 入力された会議時間を求める (strtotime は秒に変換するため、3600で割る)
             $inputHour = (strtotime($end_time) - strtotime($start_time)) / 3600;
@@ -58,7 +58,7 @@ class ReservationController extends Controller
         }
 
         // すでに予約されている時間と今回入力した時間が重なっている数を取得
-        $overlappingReservation = $meetingRoom->reservations->Where('end_time', '>',  $start_time)->Where('start_time', '<',  $end_time);
+        $overlappingReservation = $meetingRoom->reservations->Where('end_time', '>', $start_time)->Where('start_time', '<', $end_time);
 
         if ($overlappingReservation->Count() > 0) {
             // 時間が重なっている予約がある場合は予約画面に戻る
@@ -76,7 +76,7 @@ class ReservationController extends Controller
         $reservation->start_time = $start_time;
         $reservation->end_time = $end_time;
         $reservation->title = $request->title;
-        if ($meetingRoom->needs_approval == false){
+        if ($meetingRoom->needs_approval == false) {
             // 承認の必要のない会議室は承認済にする (必要な場合は null (未承認))
             $reservation->is_approved = true;
         }
