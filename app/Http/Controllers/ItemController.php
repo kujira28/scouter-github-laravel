@@ -13,7 +13,8 @@ class ItemController extends Controller
      * 備品の新規入力
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
-    public function create(){
+    public function create()
+    {
     }
 
     /**
