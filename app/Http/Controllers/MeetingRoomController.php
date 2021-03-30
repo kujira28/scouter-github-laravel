@@ -26,25 +26,29 @@ class MeetingRoomController extends Controller
         if (Auth::user()->is_administrator) {
             // 管理者の場合
             $meetingRooms = MeetingRoom::get();
-            return view('meeting_room_index',
+            return view(
+                'meeting_room_index',
                 [
                     'meetingRooms' => $meetingRooms
-                ]);
-
+                ]
+            );
         } else {
             // 一般ユーザーの場合
             return redirect('/');
         }
     }
 
-    public function create(){
+    public function create()
+    {
         if (Auth::user()->is_administrator) {
             // 管理者の場合
-            return view('meeting_room_create',
+            return view(
+                'meeting_room_create',
                 [
                     'meetingRooms' => MeetingRoom::get(),
                     'items' => Item::get(),
-                ]);
+                ]
+            );
         } else {
             // 一般ユーザーの場合
             return redirect('/');
@@ -60,14 +64,16 @@ class MeetingRoomController extends Controller
     {
         if (Auth::user()->is_administrator) {
             // 管理者の場合
-            $request->validate([
+            $request->validate(
+                [
                 'name' => 'required|max:255',
                 'max_use_hour' => 'nullable|int',
-            ],
-            [],
-            [
+                ],
+                [],
+                [
                 'name' => '会議室名',
-            ]);
+                ]
+            );
 
             $meetingRoom = new MeetingRoom();
             $meetingRoom->name = $request->name;
@@ -91,10 +97,12 @@ class MeetingRoomController extends Controller
         if (Auth::user()->is_administrator) {
             // 管理者の場合
             $meetingRoom = MeetingRoom::find($request->id);
-            return view('meeting_room_edit',
+            return view(
+                'meeting_room_edit',
                 [
                     'room' => $meetingRoom,
-                ]);
+                ]
+            );
         } else {
             // 一般ユーザーの場合
             return redirect('/');
@@ -110,14 +118,16 @@ class MeetingRoomController extends Controller
     {
         if (Auth::user()->is_administrator) {
             // 管理者の場合
-            $request->validate([
+            $request->validate(
+                [
                 'name' => 'required|max:255',
                 'needs_approval' => 'required|boolean',
-            ],
-            [],
-            [
+                ],
+                [],
+                [
                 'name' => '会議室名',
-            ]);
+                ]
+            );
 
             MeetingRoom::where('id', $request->id)
                 ->update(['id' => $request->id,
