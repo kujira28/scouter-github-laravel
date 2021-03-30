@@ -57,12 +57,14 @@ class UserController extends Controller
         if (Auth::user()->is_administrator) {
             // 管理者の場合
             $user = User::find($request->id);
-            return view('user_edit',
+            return view(
+                'user_edit',
                 [
                     'user' => $user,
                     'departments' => Department::get(),
                     'positions' => Position::get(),
-                ]);
+                ]
+            );
         } else {
             // 一般ユーザーの場合
             return redirect('/');
