@@ -55,6 +55,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/rooms/delete/{id}', 'MeetingRoomController@delete')
         ->name('rooms.delete');
 
+    Route::get('/users/index' , 'UserController@index' )
+        ->name('users.index');
+    Route::post('/users/index' , 'UserController@search' )
+        ->name('users.search');
     Route::get('/users/show/{id}' , 'UserController@show' )
         ->name('users.show');
     Route::get('/users/edit/{id}', 'UserController@edit')
@@ -62,6 +66,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::put('/users/update', 'UserController@update')
         ->name('users.update');
 
+    Route::get('/items/create' , 'ItemController@create' )
+        ->name('items.create');
+    Route::post('/items/store' , 'ItemController@store' )
+        ->name('items.store');
 });
 
 // ユーザー一覧の取得

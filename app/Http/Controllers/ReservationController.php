@@ -32,6 +32,7 @@ class ReservationController extends Controller
         return view('reservation_create',
             [
                 'meetingRooms' => MeetingRoom::get(),
+                'items' => Item::get(),
                 'isAdmin' => Auth::user()->is_administrator,
             ]);
     }
@@ -56,6 +57,20 @@ class ReservationController extends Controller
         // HTMLの input type="datetime-local" に T が含まれているので置換
         $start_time = str_replace('T', ' ', $request->start_time);
         $end_time = str_replace( 'T', ' ', $request->end_time);
+
+
+        $maxUseHour = $meetingRoom->max_use_hour;
+        if ($maxUseHour != null){
+            // 利用時間の上限がある場合
+            // 入力された会議時間を求める (strtotime は秒に変換するため、3600で割る)
+            $inputHour = (strtotime($end_time) - strtotime($start_time)) / 3600;
+            if ($inputHour > $maxUseHour) {
+                // 会議室の最大使用時間を超えている場合は予約画面に戻る
+                return back()
+                    ->withInput()
+                    ->with('error', '選択した会議室の最大利用時間は' . $meetingRoom->max_use_hour .'時間です');
+            }
+        }
 
         // すでに予約されている時間と今回入力した時間が重なっている数を取得
         $overlappingReservation = $meetingRoom->reservations->Where('end_time', '>',  $start_time)->Where('start_time', '<',  $end_time);
@@ -82,6 +97,16 @@ class ReservationController extends Controller
         }
         $reservation->save();
 
+        // 備品予約の処理
+        $items = $request->items;
+        if ($items != null) {
+            foreach ($items as $itemId) {
+                $itemReservation = new ItemReservation();
+                $itemReservation->item_id = $itemId;
+                $itemReservation->reservation_id = $reservation->id;
+                $itemReservation->save();
+            }
+        }
         return redirect(route('reservations.index'));
     }
 
@@ -126,6 +151,19 @@ class ReservationController extends Controller
         $start_time = str_replace('T', ' ', $request->start_time);
         $end_time = str_replace( 'T', ' ', $request->end_time);
 
+        $maxUseHour = $meetingRoom->max_use_hour;
+        if ($maxUseHour != null){
+            // 利用時間の上限がある場合
+            // 入力された会議時間を求める (strtotime は秒に変換するため、3600で割る)
+            $inputHour = (strtotime($end_time) - strtotime($start_time)) / 3600;
+            if ($inputHour > $maxUseHour) {
+                // 会議室の最大使用時間を超えている場合は予約画面に戻る
+                return back()
+                    ->withInput()
+                    ->with('error', '選択した会議室の最大利用時間は' . $meetingRoom->max_use_hour .'時間です');
+            }
+        }
+
         // すでに予約されている時間と今回入力した時間が重なっている数を取得 (この予約を除く)
         $overlappingReservation = $meetingRoom->reservations->where('id', '!=', $request->id)->Where('end_time', '>',  $start_time)->Where('start_time', '<',  $end_time);
 
@@ -153,6 +191,17 @@ class ReservationController extends Controller
                 'title' => $request->title,
                 'is_approved' => $isApproved]);
 
+        // 備品の予約を一旦消して登録し直す
+        ItemReservation::Where('reservation_id', $request->id)->delete();
+        $items = $request->items;
+        if ($items != null) {
+            foreach ($items as $itemId) {
+                $itemReservation = new ItemReservation();
+                $itemReservation->item_id = $itemId;
+                $itemReservation->reservation_id = $request->id;
+                $itemReservation->save();
+            }
+        }
         return redirect(route('reservations.index'));
     }
 
@@ -177,14 +226,8 @@ class ReservationController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function approve(Request $request)
+    public function approve()
     {
-        if (Auth::user()->is_administrator) {
-            // ログインしているのが管理者の場合のみ実行
-            Reservation::where('id', $request->id)
-                ->update(['is_approved' => true]);
-        }
-        return redirect(route('reservations.index'));
     }
 
     /**
@@ -192,13 +235,7 @@ class ReservationController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function reject(Request $request)
+    public function reject()
     {
-        if (Auth::user()->is_administrator) {
-            // ログインしているのが管理者の場合のみ実行
-            Reservation::where('id', $request->id)
-                ->update(['is_approved' => false]);
-        }
-        return redirect(route('reservations.index'));
     }
 }
