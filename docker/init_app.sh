@@ -19,5 +19,3 @@ chmod 777 -R ./bootstrap/cache
 cp .env.example .env
 composer install
 php artisan key:generate
-php artisan migrate
-php artisan db:seed
