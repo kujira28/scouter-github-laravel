@@ -1,0 +1,337 @@
+{
+  "id": "17e9fd40-e5d7-4cf1-bb74-5201a1527ffd",
+  "version": "2.0",
+  "name": "php-practice-24",
+  "url": "http://localhost",
+  "tests": [{
+    "id": "c7f86ab1-371b-4b48-bd9d-f3a3a4ebe397",
+    "name": "php-practice-24",
+    "commands": [{
+      "id": "050372f3-394b-4ed9-8eb6-26dafa90f216",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c1e19abb-a578-4a67-868c-4b0720157bc8",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1440x900",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "40b561a2-7794-4a5b-b154-fc10b7c89a25",
+      "comment": "",
+      "command": "type",
+      "target": "id=user_name_id",
+      "targets": [
+        ["id=user_name_id", "id"],
+        ["name=user_name_id", "name"],
+        ["css=#user_name_id", "css:finder"],
+        ["xpath=//input[@id='user_name_id']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "user1"
+    }, {
+      "id": "384e5859-12d0-479b-a58a-0109a43c7b56",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "1234abc@"
+    }, {
+      "id": "86c827b5-0fe3-4852-8fb9-a06fa614fc3e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ログイン')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f2de38b2-12b9-406b-900b-d0965a79c0a6",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=ユーザー一覧",
+      "targets": [
+        ["linkText=ユーザー一覧", "linkText"],
+        ["css=.btn:nth-child(8)", "css:finder"],
+        ["xpath=//a[contains(text(),'ユーザー一覧')]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/a[4]", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/index']", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'ユーザー一覧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5a3bab6-5fff-49da-949f-12cc0c71c30d",
+      "comment": "",
+      "command": "select",
+      "target": "id=department_id",
+      "targets": [],
+      "value": "label=製造部"
+    }, {
+      "id": "51e6bed2-6fdd-40f9-84f9-f9c74fdfb273",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn\\.btn-info",
+      "targets": [
+        ["css=.btn\\.btn-info", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/div/form/div[6]/div/button", "xpath:idRelative"],
+        ["xpath=//div[6]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ユーザー検索')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "56984bd9-9c40-4808-b825-a3e9116b19e8",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=tr:nth-child(2) > td:nth-child(1) > a",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'user1')])[2]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/show/1']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "11de26e8-b9b3-4f74-850b-67899bdc841e",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=td:nth-child(5)",
+      "targets": [
+        ["css=td:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td[5]", "xpath:idRelative"],
+        ["xpath=//td[5]", "xpath:position"],
+        ["xpath=//td[contains(.,'製造部')]", "xpath:innerText"]
+      ],
+      "value": "製造部"
+    }, {
+      "id": "bc8c01fd-38c7-4a22-8696-a2dfafce0e1c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=編集",
+      "targets": [
+        ["linkText=編集", "linkText"],
+        ["css=.text-center > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'編集')]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td[7]/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/edit/1']", "xpath:href"],
+        ["xpath=//td[7]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'編集')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8d6684c6-457d-4b3a-82e7-2c21425723b3",
+      "comment": "",
+      "command": "select",
+      "target": "id=department_id",
+      "targets": [],
+      "value": "label=総務部"
+    }, {
+      "id": "39c31096-11ba-40ff-8277-0f3a1971b643",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn\\.btn-info",
+      "targets": [
+        ["css=.btn\\.btn-info", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div[10]/div/button", "xpath:idRelative"],
+        ["xpath=//div[10]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ユーザーを更新')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6a6ab93-eb80-4599-aacf-2389918155e3",
+      "comment": "",
+      "command": "select",
+      "target": "id=department_id",
+      "targets": [],
+      "value": "label=製造部"
+    }, {
+      "id": "5b156153-77ef-4546-b3a7-4d195b2d8842",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn\\.btn-info",
+      "targets": [
+        ["css=.btn\\.btn-info", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/div/form/div[6]/div/button", "xpath:idRelative"],
+        ["xpath=//div[6]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ユーザー検索')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f04fde40-1a89-4b1e-a2b7-576e65040ce2",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=tr:nth-child(2) > td:nth-child(1) > a",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'user1')])[2]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/show/1']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "616b7006-19a0-4f9c-9039-2a25a977c352",
+      "comment": "",
+      "command": "select",
+      "target": "id=department_id",
+      "targets": [],
+      "value": "label=総務部"
+    }, {
+      "id": "8ff5b1e5-fc04-4c6f-81fb-eaaec049bc02",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn\\.btn-info",
+      "targets": [
+        ["css=.btn\\.btn-info", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/div/form/div[6]/div/button", "xpath:idRelative"],
+        ["xpath=//div[6]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ユーザー検索')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "604afc7f-cdf3-4b7f-b54d-0a259344a9b2",
+      "comment": "",
+      "command": "verifyElementPresent",
+      "target": "css=tr:nth-child(2) > td:nth-child(1) > a",
+      "targets": [
+        ["css=tr:nth-child(2) > td:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'user1')])[2]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/show/1']", "xpath:href"],
+        ["xpath=//td/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fd69416-d31f-4ef6-83ff-a53c4df8cd85",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=td:nth-child(5)",
+      "targets": [
+        ["css=td:nth-child(5)", "css:finder"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/table/tbody/tr[2]/td[5]", "xpath:idRelative"],
+        ["xpath=//td[5]", "xpath:position"],
+        ["xpath=//td[contains(.,'総務部')]", "xpath:innerText"]
+      ],
+      "value": "総務部"
+    }, {
+      "id": "3d811874-8781-4ec0-aecf-8fa38bf75aa9",
+      "comment": "",
+      "command": "click",
+      "target": "id=navbarDropdown",
+      "targets": [
+        ["id=navbarDropdown", "id"],
+        ["linkText=user1", "linkText"],
+        ["css=#navbarDropdown", "css:finder"],
+        ["xpath=//a[contains(text(),'user1')]", "xpath:link"],
+        ["xpath=//a[@id='navbarDropdown']", "xpath:attributes"],
+        ["xpath=//div[@id='navbarSupportedContent']/ul[2]/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "de039c30-ee53-4114-871c-8d167febcb55",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=ログアウト",
+      "targets": [
+        ["linkText=ログアウト", "linkText"],
+        ["css=.dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'ログアウト')]", "xpath:link"],
+        ["xpath=//a[@onclick=\"event.preventDefault();\n                                                     document.getElementById('logout-form').submit();\"]", "xpath:attributes"],
+        ["xpath=//div[@id='navbarSupportedContent']/ul[2]/li/div/a", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/logout']", "xpath:href"],
+        ["xpath=//li/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'ログアウト')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7a91e9e-df45-48ea-b50c-fdfbd6682903",
+      "comment": "",
+      "command": "type",
+      "target": "id=user_name_id",
+      "targets": [
+        ["id=user_name_id", "id"],
+        ["name=user_name_id", "name"],
+        ["css=#user_name_id", "css:finder"],
+        ["xpath=//input[@id='user_name_id']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "user2"
+    }, {
+      "id": "e7cceabc-32f7-4ea3-a1ed-4b80768cf2f7",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "1234abc@"
+    }, {
+      "id": "3035fd01-7c74-4d52-a659-9ff98ad3fa26",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/form/div[4]/div/button", "xpath:idRelative"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'ログイン')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "20881da7-838f-4517-8ae0-434d3fb1a89a",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "linkText=ユーザー一覧",
+      "targets": [
+        ["linkText=ユーザー一覧", "linkText"],
+        ["css=.btn:nth-child(8)", "css:finder"],
+        ["xpath=//a[contains(text(),'ユーザー一覧')]", "xpath:link"],
+        ["xpath=//div[@id='app']/main/div/div/div/div/div[2]/a[4]", "xpath:idRelative"],
+        ["xpath=//a[@href='http://localhost/users/index']", "xpath:href"],
+        ["xpath=//a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'ユーザー一覧')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "e694cfcc-c406-4ff2-888c-5ee248b72adf",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["c7f86ab1-371b-4b48-bd9d-f3a3a4ebe397"]
+  }],
+  "urls": ["http://localhost/"],
+  "plugins": []
+}
