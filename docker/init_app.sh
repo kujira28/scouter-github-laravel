@@ -12,7 +12,7 @@ mysql -u root -p${PASS_NEW} -e "CREATE DATABASE scouter_test DEFAULT CHARACTER S
 
 mkdir -p /var/www/
 cd /var/www
-git clone -b ${BRANCH} https://github.com/kujira28/scouter-github-laravel.git
+git clone -b ${BRANCH} ${REPO_URL_GITHUB_LARAVEL}
 cd scouter-github-laravel
 chmod 777 -R ./storage
 chmod 777 -R ./bootstrap/cache

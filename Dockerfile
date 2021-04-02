@@ -51,4 +51,8 @@ WORKDIR /var/www/html/scouter-github-laravel
 COPY ./docker/init_app.sh /root
 RUN chmod +x /root/init_app.sh
 
+# Set scouter repository url
+ARG repository
+ENV REPO_URL_GITHUB_LARAVEL $repository
+
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
