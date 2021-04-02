@@ -10,6 +10,7 @@ mysql -u root -p${PASS_OLD} -e "SET GLOBAL validate_password_policy=LOW;" --conn
 mysql -u root -p${PASS_OLD} -e "SET password for root@localhost=password('root');" --connect-expired-password
 mysql -u root -p${PASS_NEW} -e "CREATE DATABASE scouter_test DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
 
+ssh -oStrictHostKeyChecking=no git@github.com -i /root/.ssh/id_rsa
 mkdir -p /var/www/
 cd /var/www
 git clone -b ${BRANCH} ${REPO_URL_GITHUB_LARAVEL}
